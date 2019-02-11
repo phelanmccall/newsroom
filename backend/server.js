@@ -119,6 +119,8 @@ app.post("/note", function(req, res) {
     });
 });
 
+app.get("*", (req,res) => req.send(200))
+
 // Start the server
 app.listen(PORT, function() {
   console.log("App running on port " + PORT + "!");
