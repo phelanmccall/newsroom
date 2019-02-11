@@ -29,7 +29,7 @@ app.use(cors());
 app.use(express.static("public"));
 
 // Connect to the Mongo DB
-mongoose.connect("mongodb://localhost/newsroom", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/newsroom", { useNewUrlParser: true });
 
 // Routes
 
