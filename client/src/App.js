@@ -28,14 +28,14 @@ class App extends Component {
     axios({
       header: "Access-Control-Allow-Origin",
       method: 'get',
-      url: 'http://localhost:3001/scrape',
+      url: '/scrape',
       responseType: 'json',
       crossDomain: true
     }).catch(err => console.log(err));
     axios({
       header: "Access-Control-Allow-Origin",
       method: 'get',
-      url: 'http://localhost:3001/articles',
+      url: '/articles',
       responseType: 'json',
       crossDomain: true
     }).then((response) => {
@@ -84,7 +84,7 @@ class App extends Component {
     axios({
       header: "Access-Control-Allow-Origin",
       method: 'GET',
-      url: 'http://localhost:3001/article',
+      url: '/article',
       crossDomain: true,
       params: {
         id: art.id

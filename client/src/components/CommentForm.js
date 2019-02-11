@@ -22,7 +22,7 @@ class CommentForm extends Component {
         axios({
             header: "Access-Control-Allow-Origin",
             method: 'POST',
-            url: 'http://localhost:3001/note',
+            url: '/note',
             crossDomain: true,
             data: {
                 note: this.state.note,
