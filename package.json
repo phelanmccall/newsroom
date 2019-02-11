@@ -7,8 +7,8 @@
     "start": "concurrently \"cd backend && node server.js\" \"cd client && npm start\"",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["react", "newsroom", "news"],
+  "author": "Phelan McCall",
   "license": "ISC",
   "dependencies": {
     "concurrently": "^4.1.0"
