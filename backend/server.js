@@ -12,7 +12,7 @@ var cors = require("cors");
 // Require all models
 var db = require("./models");
 
-var PORT = 3001;
+var PORT = process.env.PORT || 3001;
 
 // Initialize Express
 var app = express();
