@@ -21,8 +21,9 @@
 .App-link {
   color: #61dafb;
 }
-
-body { background-color: #F2F6D0 }
+body{
+  background: #666;
+}
 #wrapper {
   width: 960px;
   margin-left: auto;
@@ -42,7 +43,6 @@ body { background-color: #F2F6D0 }
 textarea, input {
   display: block;
   width: 100%;
-  background-color: #FCF5C7;
 }
 input {
   height: 36px;

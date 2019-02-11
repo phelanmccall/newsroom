@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import Sidebar from "./components/Sidebar";
 import Display from "./components/Display";
-import "./App.css";
+import Header from "./components/Header";
+
+import "./App.css"
 import axios from 'axios';
 
 class App extends Component {
@@ -11,23 +13,25 @@ class App extends Component {
     this.state = {
       articles: [],
       focus: {
-        title: "select an article to view"
+        title: "select an article to view",
+        comments: []
       }
     };
 
     this.articleHandler = this.articleHandler.bind(this)
+    this.addComment = this.addComment.bind(this);
+    
   }
 
   componentDidMount() {
     // Grab the articles as a json
-    console.log("MOUNTED");
     axios({
       header: "Access-Control-Allow-Origin",
       method: 'get',
       url: 'http://localhost:3001/scrape',
       responseType: 'json',
       crossDomain: true
-    });
+    }).catch(err => console.log(err));
     axios({
       header: "Access-Control-Allow-Origin",
       method: 'get',
@@ -35,9 +39,7 @@ class App extends Component {
       responseType: 'json',
       crossDomain: true
     }).then((response) => {
-      // For each one
-      console.log("DATA : " + Object.keys(response.data));
-      this.setState({ articles: [] });
+           
       this.setState({ articles: response.data })
 
     }).catch((err) => {
@@ -49,47 +51,60 @@ class App extends Component {
   }
 
   articleHandler(e){
-    console.log("CLICK HANDLER");
-    console.log(e.target);
-    console.log(e.target.parentElement)
-    var art;
-    if(e.target.children[0]){
-      
-   }else{
    
-   }
+    var art;
+   
     switch(e.target.localName){
       case "div":
       art = {
         title: e.target.children[0].innerHTML,
-        link: e.target.children[1].innerHTML
+        link: e.target.children[1].innerHTML,
+        id: e.target.id
       }
-      console.log(art);
-    this.setState({focus: art})
       break;
       case "a":
       art = {
         title: e.target.parentElement.children[0].innerHTML,
-        link: e.target.innerHTML
+        link: e.target.innerHTML,
+        id: e.target.parentElement.id
       }
-      console.log(art);
-    this.setState({focus: art})
       break;
       case "p":
       art = {
         title: e.target.innerHTML,
-        link: e.target.parentElement.children[1].innerHTML
+        link: e.target.parentElement.children[1].innerHTML,
+        id: e.target.parentElement.id
       }
-      console.log(art);
-    this.setState({focus: art})
+     
+   
       break;
       default:
-      console.log(e.target.localName)
       break;
     }
+    axios({
+      header: "Access-Control-Allow-Origin",
+      method: 'GET',
+      url: 'http://localhost:3001/article',
+      crossDomain: true,
+      params: {
+        id: art.id
+      }
+      }).then(response => {
+      var data = response.data;
+      art.comments = data;
+      this.setState({focus: art})
+    
+    }).catch(err => console.log(err));
     
     
   }
+
+  addComment(comment){
+    var proxy = this.state.focus;
+    proxy.comments.push(comment);
+    this.setState({focus: proxy});
+  }
+
 
   render() {
     var style ={
@@ -99,13 +114,10 @@ class App extends Component {
   }
     return (
       <div style={style} className="container">
-        <div className="row">
-          <h1 className="col-8">Note Scraper</h1>
-          <h2 className="col-10"><i>If you can do this...the homework should be no problem.</i></h2>
-        </div>
+        <Header />
         <div className="row">
           <Sidebar articles={this.state.articles} handler={this.articleHandler}/>
-          <Display article={this.state.focus}/>
+          <Display article={this.state.focus} addComment={this.addComment}/>
         </div>
       </div>
     );

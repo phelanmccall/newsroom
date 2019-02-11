@@ -20,7 +20,7 @@ class Sidebar extends Component {
             <div style={style} className="col-4">
             {
                  this.props.articles.map((article, index) => {
-                    return <Article key={index} title={article.title} link={article.link} handler={this.props.handler}/>
+                    return <Article key={index} id={article._id} title={article.title} link={article.link} handler={this.props.handler}/>
                 })
             }
             </div>
