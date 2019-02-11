@@ -12,7 +12,7 @@ var cors = require("cors");
 // Require all models
 var db = require("./models");
 
-var PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3001;
 
 // Initialize Express
 var app = express();
@@ -119,9 +119,9 @@ app.post("/note", function(req, res) {
     });
 });
 
-app.get("*", (req,res) => req.send(200))
+app.get("/", (req,res,next) => next())
 
 // Start the server
-app.listen(PORT, function() {
+app.listen(PORT, () => {
   console.log("App running on port " + PORT + "!");
 });
