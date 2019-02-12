@@ -9,6 +9,8 @@ function removeElement(e) {
     data: {
       id: element.id
     }
+  }).then(function(){
+    element.remove()
   }).catch(err => console.log(err))
  
   
