@@ -11,7 +11,7 @@ class CommentDisplay extends Component {
 
                 {
                     this.props.comments.map((comment, index) => {
-                        return <Comment key={index} comment={comment} />
+                        return <Comment key={index} comment={comment} removeElement={this.props.removeElement} />
                     })
                 }
             </div>

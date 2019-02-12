@@ -9,8 +9,8 @@ class Display extends Component {
         return (
             <div className="col-10 border bg-dark">
                 <ArticleDisplay article={this.props.article}/>
-                <CommentForm id={this.props.article.id} addComment={this.props.addComment}/>
-                <CommentDisplay comments={this.props.article.comments}/>
+                <CommentForm article={this.props.article} addComment={this.props.addComment}/>
+                <CommentDisplay comments={this.props.article.comments} removeElement={this.props.removeElement}/>
             </div>
             
         );

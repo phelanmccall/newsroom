@@ -29,13 +29,13 @@ class CommentForm extends Component {
                 crossDomain: true,
                 data: {
                     note: this.state.note,
-                    id: this.props.id
+                    id: this.props.article.id
                 }
             }).then(() =>{
-            
-                this.props.addComment();
                 this.setState({note: ""})
                 document.getElementById("comment").value = "";
+                this.props.addComment();
+                
             }).catch(err => console.log(err))
         }
     }
@@ -43,7 +43,7 @@ class CommentForm extends Component {
     render() {
 
         return (
-            <form method="POST" action={"/articles/" + this.props.id} className="row m-1">
+            <form method="POST" action={"/articles/" + this.props.article.id} className="row m-1">
                 <input className="btn btn-secondary col-4" type="submit" onClick={this.handleSubmit} value="Comment"></input>
                 <input id="comment" name="note" type="text" maxLength="256" className="col-6" onChange={this.handleCommentChange}></input>
             </form>
