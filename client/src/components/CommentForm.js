@@ -14,19 +14,14 @@ class CommentForm extends Component {
     }
 
     handleCommentChange(e) {
-        console.log(e.target.value)
         this.setState({ note: e.target.value })
     }
 
     handleSubmit(e) {
-        console.log(this.state.note)
-        console.log(this.props.id)
+        
         e.preventDefault()
-        if(this.state.note.length > 6){
-            this.props.addComment({
-                body: this.state.note,
-                id: this.props.id
-            });
+        if(this.state.note.length > 0){
+         
             axios({
                 header: "Access-Control-Allow-Origin",
                 method: 'POST',
@@ -38,7 +33,7 @@ class CommentForm extends Component {
                 }
             }).then(() =>{
             
-                
+                this.props.addComment();
                 this.setState({note: ""})
                 document.getElementById("comment").value = "";
             }).catch(err => console.log(err))

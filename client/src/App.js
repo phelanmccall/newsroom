@@ -14,14 +14,14 @@ class App extends Component {
       articles: [],
       focus: {
         title: "select an article to view",
-        comments: [],
+        comments: [{body: "lol", _id: "0"}, {body: "test", _id: "1"}],
         id: "0"
       }
     };
 
     this.articleHandler = this.articleHandler.bind(this)
     this.addComment = this.addComment.bind(this);
-    
+
   }
 
   componentDidMount() {
@@ -40,7 +40,7 @@ class App extends Component {
       responseType: 'json',
       crossDomain: true
     }).then((response) => {
-           
+
       this.setState({ articles: response.data })
 
     }).catch((err) => {
@@ -51,36 +51,36 @@ class App extends Component {
 
   }
 
-  articleHandler(e){
-   
+  articleHandler(e) {
+
     var art;
-   
-    switch(e.target.localName){
+
+    switch (e.target.localName) {
       case "div":
-      art = {
-        title: e.target.children[0].innerHTML,
-        link: e.target.children[1].innerHTML,
-        id: e.target.id
-      }
-      break;
+        art = {
+          title: e.target.children[0].innerHTML,
+          link: e.target.children[1].innerHTML,
+          id: e.target.id
+        }
+        break;
       case "a":
-      art = {
-        title: e.target.parentElement.children[0].innerHTML,
-        link: e.target.innerHTML,
-        id: e.target.parentElement.id
-      }
-      break;
+        art = {
+          title: e.target.parentElement.children[0].innerHTML,
+          link: e.target.innerHTML,
+          id: e.target.parentElement.id
+        }
+        break;
       case "p":
-      art = {
-        title: e.target.innerHTML,
-        link: e.target.parentElement.children[1].innerHTML,
-        id: e.target.parentElement.id
-      }
-     
-   
-      break;
+        art = {
+          title: e.target.innerHTML,
+          link: e.target.parentElement.children[1].innerHTML,
+          id: e.target.parentElement.id
+        }
+
+
+        break;
       default:
-      break;
+        break;
     }
     axios({
       header: "Access-Control-Allow-Origin",
@@ -90,34 +90,46 @@ class App extends Component {
       params: {
         id: art.id
       }
-      }).then(response => {
+    }).then(response => {
       var data = response.data;
       art.comments = data;
-      this.setState({focus: art})
-    
+      this.setState({ focus: art })
+
     }).catch(err => console.log(err));
-    
-    
+
+
   }
 
-  addComment(comment){
-    var proxy = this.state.focus;
-    proxy.comments.push(comment);
-    this.setState({focus: proxy});
+  addComment() {
+    axios({
+      header: "Access-Control-Allow-Origin",
+      method: 'GET',
+      url: '/article',
+      crossDomain: true,
+      params: {
+        id: this.state.focus.id
+      }
+    }).then(response => {
+      var proxy = this.state.focus;
+      proxy.comments = response.data.length? response.data : [{body: "lol", _id: "0"}, {body: "test", _id: "1"}];
+
+      this.setState({ focus: proxy })
+
+    }).catch(err => console.log(err));
   }
 
 
   render() {
-    var style ={
+    var style = {
       width: "75vw",
       marginLeft: "30vw",
       marginRight: "20vw"
-  }
+    }
     return (
       <div style={style} className="container">
         <Header />
         <div className="row">
-          <Sidebar articles={this.state.articles} handler={this.articleHandler}/>
+          <Sidebar articles={this.state.articles} handler={this.articleHandler} />
           <Display article={this.state.focus} addComment={this.addComment}/>
         </div>
       </div>
