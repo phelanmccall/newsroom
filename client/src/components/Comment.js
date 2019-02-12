@@ -10,7 +10,7 @@ function removeElement(e) {
       id: element.id
     }
   }).then(function(){
-    element.parentNode.removeChild(element);
+    element.removeChild(e.target);
   }).catch(err => console.log(err));
  
   
