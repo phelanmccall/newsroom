@@ -11,7 +11,7 @@ function removeElement(e) {
       id: element.id
     }
   }).catch(err => console.log(err))
-  element.remove();
+ 
   
   }
 class Comment extends Component {
