@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from "axios";
 function removeElement(e) {
   // Removes an element from the document.
-  var element = document.getElementById(e.target.parentNode.id);
+  var element = e.target.parentNode;
   axios({
     method: "DELETE",
     url: "/note",
@@ -10,7 +10,7 @@ function removeElement(e) {
       id: element.id
     }
   }).then(function(){
-    element.removeChild(element.childNodes);
+    element.removeChild(e.target);
   }).catch(err => console.log(err));
  
   
