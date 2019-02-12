@@ -6,7 +6,7 @@ class CommentForm extends Component {
         super(props);
 
         this.state = {
-
+            note: ""    
         }
 
         this.handleCommentChange = this.handleCommentChange.bind(this);
@@ -14,25 +14,35 @@ class CommentForm extends Component {
     }
 
     handleCommentChange(e) {
+        console.log(e.target.value)
         this.setState({ note: e.target.value })
     }
 
     handleSubmit(e) {
+        console.log(this.state.note)
+        console.log(this.props.id)
         e.preventDefault()
-        axios({
-            header: "Access-Control-Allow-Origin",
-            method: 'POST',
-            url: '/note',
-            crossDomain: true,
-            data: {
-                note: this.state.note,
+        if(this.state.note.length > 6){
+            this.props.addComment({
+                body: this.state.note,
                 id: this.props.id
-            }
-        }).then((response) =>{
-        
-            this.props.addComment(response.data);
-            document.getElementById("comment").value = "";
-        }).catch(err => console.log(err))
+            });
+            axios({
+                header: "Access-Control-Allow-Origin",
+                method: 'POST',
+                url: '/note',
+                crossDomain: true,
+                data: {
+                    note: this.state.note,
+                    id: this.props.id
+                }
+            }).then(() =>{
+            
+                
+                this.setState({note: ""})
+                document.getElementById("comment").value = "";
+            }).catch(err => console.log(err))
+        }
     }
 
     render() {

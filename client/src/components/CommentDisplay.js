@@ -11,7 +11,7 @@ class CommentDisplay extends Component {
                
                 {
                     this.props.comments.map((comment, index) => {
-                        return <Comment key={index} body={comment.body}/>
+                        return <Comment key={index} comment={comment} />
                     })
                 }
             </div>

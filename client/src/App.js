@@ -14,7 +14,8 @@ class App extends Component {
       articles: [],
       focus: {
         title: "select an article to view",
-        comments: []
+        comments: [],
+        id: "0"
       }
     };
 
