@@ -18,9 +18,9 @@ class Comment extends Component {
     
 
     render() {
-      console.log(this.props.comment.id)
+      console.log(this.props.comment._id)
         return (
-          <div id={this.props.comment.id || "0"} className="row m-auto border"><p className="col-8">{this.props.comment.body}</p> <button className="btn btn-danger col-4" onClick={removeElement}>X</button></div>
+          <div id={this.props.comment._id} className="row m-auto border"><p className="col-8">{this.props.comment.body}</p> <button className="btn btn-danger col-4" onClick={removeElement}>X</button></div>
         );
     }
 }
