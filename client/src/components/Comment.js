@@ -10,7 +10,7 @@ function removeElement(e) {
       id: element.id
     }
   }).then(function(){
-    element.remove()
+    element.remove();
   }).catch(err => console.log(err))
  
   

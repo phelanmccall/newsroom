@@ -124,12 +124,12 @@ app.post("/note", function(req, res) {
 app.delete("/note", (req, res) => {
   db.Note.deleteOne({
     _id: req.body.id
-  }).then(dbNote => {console.log("deleted " + dbNote), res.json}).catch(err => console.log(err.message));
+  }).then(dbNote => {console.log("deleted " + dbNote), res.json(dbNote)}).catch(err => console.log(err.message));
 })
 
 app.get('/', function(req, res) {
   res.sendFile("../client/build/index.html");
-});
+}); 
 
 // Start the server
 app.listen(PORT, () => {
