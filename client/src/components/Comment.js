@@ -9,7 +9,7 @@ function removeElement(e) {
     data: {
       id: element.id
     }
-  }).then(function(){
+  }).then(() => {
     element.removeChild(e.target);
   }).catch(err => console.log(err));
  
