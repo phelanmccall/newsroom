@@ -9,7 +9,6 @@ const style = {
     top: "20vh",
     right: "0",
     color: "white",
-    backgroundColor: "#111",
     overflowX: "hidden",
     paddingTop: "20px"
   }
@@ -20,7 +19,7 @@ class Display extends Component {
     render() {
 
         return (
-            <div className="col-5 border bg-dark" style={style}>
+            <div className="col-6 border bg-dark" style={style}>
                 <ArticleDisplay article={this.props.article}/>
                 <CommentForm article={this.props.article} addComment={this.props.addComment}/>
                 <CommentDisplay comments={this.props.article.comments} removeElement={this.props.removeElement}/>
