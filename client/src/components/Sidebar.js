@@ -17,7 +17,7 @@ class Sidebar extends Component {
     render() {
         
         return (
-            <div style={style} className="col-6">
+            <div style={style} className="col-5">
             <h1>Articles:</h1>
             {
                  this.props.articles.map((article, index) => {
