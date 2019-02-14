@@ -4,7 +4,7 @@ class ArticleDisplay extends Component {
     
     render(){
         return (
-            <div className="col-12 bg-secondary text-light text-center ">
+            <div className="col-12 bg-secondary text-light text-center p-3">
                 <div className="p-2">{this.props.article.title}</div>
           
                 <button style={{"overflow": "hidden"}} className="col-12 btn btn-dark" 
