@@ -142,13 +142,9 @@ class App extends Component {
 
 
   render() {
-    var style ={
-      width: "75vw",
-        marginLeft: "30vw",
-      marginRight: "20vw"
-  }
+   
     return (
-      <div style={style} className="container">
+      <div  className="container">
         <Header />
         <div className="row">
           <Sidebar articles={this.state.articles} handler={this.articleHandler}/>

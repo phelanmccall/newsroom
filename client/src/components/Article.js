@@ -9,8 +9,7 @@ class Article extends Component {
               
                     <p className="col-12 text-light">{this.props.title}
                     </p>
-                    <a style={{"overflow": "hidden"}} className="col-12 btn btn-dark" href={this.props.link} target="/_blank">{this.props.link}</a>
-
+                   
             </div>
 
 

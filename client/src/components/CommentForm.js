@@ -44,8 +44,8 @@ class CommentForm extends Component {
 
         return (
             <form method="POST" action={"/articles/" + this.props.article.id} className="row m-1">
-                <input className="btn btn-secondary col-4" type="submit" onClick={this.handleSubmit} value="Comment"></input>
-                <input id="comment" name="note" type="text" maxLength="256" className="col-6" onChange={this.handleCommentChange}></input>
+                <input className="btn btn-secondary col-12" type="submit" onClick={this.handleSubmit} value="Comment"></input>
+                <input id="comment" name="note" type="text" maxLength="256" className="col-12" onChange={this.handleCommentChange}></input>
             </form>
         );
 
