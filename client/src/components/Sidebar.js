@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Article from "./Article";
 
 const style = {
-    height: "100%",
+    height: "80vh",
     position: "fixed",
     top: "20vh",
     left: "0",

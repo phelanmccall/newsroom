@@ -4,7 +4,7 @@ import CommentDisplay from "./CommentDisplay";
 import ArticleDisplay from "./ArticleDisplay";
 
 const style = {
-    height: "100%",
+    height: "80vh",
     position: "fixed",
     top: "20vh",
     right: "0",
