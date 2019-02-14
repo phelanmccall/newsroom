@@ -7,7 +7,11 @@ class ArticleDisplay extends Component {
             <div className="col-12 bg-secondary text-light text-center ">
                 <div className="p-2">{this.props.article.title}</div>
           
-                <button style={{"overflow": "hidden"}} className="btn btn-dark m-1" href={this.props.article.link} rel="noopener noreferrer" target="_blank">{this.props.article.link}</button>
+                <button style={{"overflow": "hidden"}} className="col-12 btn btn-dark" 
+                href={this.props.article.link} rel="noopener noreferrer" target="_blank">{this.props.article.link}</button>
+            
+
+            
             </div>
         );
     }
